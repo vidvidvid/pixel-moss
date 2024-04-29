@@ -32,7 +32,54 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.text-green {
+  color: #D3FF00;
+}
+
+.text-violet {
+  color: #C6A4FF
+}
+
+
+
+@font-face {
+  font-family: 'ScumFont';
+  src: url('/public/fonts/Aa_scum-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.scum-font {
+  font-family: 'ScumFont', sans-serif;
+  text-shadow: 0 0 10px #ffffff;
+}
+
+@font-face {
+  font-family: 'Voxel';
+  src: url('/public/fonts/Voxel.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.voxel-font {
+  font-family: 'Voxel', sans-serif;
+  text-shadow: 0 0 10px #ffffff;
+}
+
+@font-face {
+  font-family: 'IBMPlex';
+  src: url('/public/fonts/IBM/IBMPlexMono-Regular.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ibm-font {
+  font-family: 'IBMPlex', sans-serif;
+  font-weight: 500;
 }
