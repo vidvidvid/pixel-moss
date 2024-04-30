@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import moss from "../assets/interact/moss.png";
+import animate from "../assets/interact/animate.gif";
 import wet from "../assets/interact/wet.svg";
 import glow from "../assets/interact/glow.svg";
 import drop from "../assets/interact/drop.svg";
@@ -8,18 +9,23 @@ import sun from "../assets/interact/sun.svg";
 const MossInteraction = () => {
   const [isGlowing, setIsGlowing] = useState(false);
   const [isWet, setIsWet] = useState(false);
+  const [mah, setMah] = useState(moss);
 
   const handleGlowClick = () => {
     setIsGlowing(true);
+    setMah(animate);
     setTimeout(() => {
       setIsGlowing(false);
+      setMah(moss);
     }, 1000);
   };
 
   const handleWaterClick = () => {
     setIsWet(true);
+    setMah(animate);
     setTimeout(() => {
       setIsWet(false);
+      setMah(moss);
     }, 1000);
   };
 
@@ -41,8 +47,9 @@ const MossInteraction = () => {
           alignItems: "center",
           height: "100%",
           width: "100%",
-          marginTop: 40,
-          marginLeft: -20,
+          top: 70,
+          left: -20,
+          position: "absolute",
         }}
       >
         <button
@@ -53,6 +60,7 @@ const MossInteraction = () => {
             fontSize: 18,
             cursor: "pointer",
             transition: "transform 0.2s",
+            height: 35,
           }}
           className='scum-font'
           onClick={handleWaterClick}
@@ -88,7 +96,7 @@ const MossInteraction = () => {
           Shine for me
         </button>
       </div>
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "absolute", bottom: 0, left: -20 }}>
         <img
           src={wet}
           style={{
@@ -118,7 +126,7 @@ const MossInteraction = () => {
           alt='Glow'
         />
         <img
-          src={moss}
+          src={mah}
           style={{
             width: 260,
             position: "relative",

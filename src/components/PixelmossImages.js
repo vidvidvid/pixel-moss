@@ -8,6 +8,7 @@ import pixelmoss5 from "../assets/pixelmoss/pixelmoss5.svg";
 import pixelmoss6 from "../assets/pixelmoss/pixelmoss6.svg";
 import pixelmoss7 from "../assets/pixelmoss/pixelmoss7.svg";
 import pixelmoss8 from "../assets/pixelmoss/pixelmoss8.svg";
+import takecare from "../assets/pixelmoss/takecare.svg";
 
 const pixelmossImages = [
   pixelmoss0,
@@ -16,9 +17,10 @@ const pixelmossImages = [
   pixelmoss3,
   pixelmoss4,
   pixelmoss5,
-  pixelmoss6,
+  takecare,
   pixelmoss7,
   pixelmoss8,
+  pixelmoss6,
 ];
 
 const positionStyles = [
@@ -28,9 +30,10 @@ const positionStyles = [
   { top: "20px", left: "130px", width: "200px" },
   { top: "20px", right: "400px", width: "400px" },
   { bottom: "20px", right: "300px", width: "400px", zIndex: 1337 },
-  { bottom: "440px", left: "50px", width: "400px", zIndex: 1337 },
+  { bottom: "450px", left: "60px", width: "300px", zIndex: 1337 },
   { bottom: "120px", right: "360px", width: "400px", zIndex: 1337 },
   { top: "20px", left: "500px", width: "400px", zIndex: 1337 },
+  { bottom: "370px", right: "150px", width: "350px" },
 ];
 
 const PixelmossImages = () => {

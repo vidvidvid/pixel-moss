@@ -69,6 +69,10 @@
 
 .voxel-font {
   font-family: 'Voxel', sans-serif;
+  /* text-shadow: 0 0 10px #ffffff; */
+}
+
+.text-shadow {
   text-shadow: 0 0 10px #ffffff;
 }
 

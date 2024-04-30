@@ -68,7 +68,7 @@ const Frame = ({
     position: "absolute",
     width: "100%",
     height: "100%",
-    backdropFilter: "blur(8px)", // Apply blur to the backdrop
+    backdropFilter: "blur(16px)", // Apply blur to the backdrop
     zIndex: 1, // Ensures it does not overlap content
   };
 

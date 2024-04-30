@@ -10,6 +10,8 @@ import Frame from "./Frame";
 import ChartContainer from "./ChartContainer";
 import right from "../assets/memes/right.png";
 import center from "../assets/memes/center.png";
+import mahci from "../assets/mahci.gif";
+import nitke from "../assets/nitke.gif";
 import { formPrompt } from "../prompt";
 import axios from "axios";
 import MossInteraction from "./MossInteraction";
@@ -166,7 +168,7 @@ const Layout = React.memo(({ setScrollableRef }) => {
           width='850px'
           position={{
             top: 100,
-            left: 500,
+            left: 450,
           }}
           innerTop={90}
           innerLeft={160}
@@ -265,11 +267,46 @@ const Layout = React.memo(({ setScrollableRef }) => {
           >
             <img
               src={right}
-              style={{ width: "100%", height: "auto" }}
+              style={{
+                width: 292,
+                height: "auto",
+              }}
               alt='Scrollable content'
             />
           </div>
         </Frame>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            height: "100vh",
+            width: "100vw",
+          }}
+        >
+          <img
+            src={nitke}
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+            alt='nitke'
+          />
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 230,
+          }}
+        >
+          <img
+            src={mahci}
+            style={{
+              height: "100vh",
+            }}
+            alt='mahci'
+          />
+        </div>
       </div>
     </div>
   );
