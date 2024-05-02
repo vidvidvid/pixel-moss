@@ -87,3 +87,11 @@
   font-family: 'IBMPlex', sans-serif;
   font-weight: 500;
 }
+
+.custom-cursor {
+  cursor: url('/public/cursor/miska.svg'), auto;
+}
+
+.custom-cursor-hover {
+  cursor: url('/public/cursor/klik.svg'), auto;
+}

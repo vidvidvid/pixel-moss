@@ -64,8 +64,8 @@ const Hello = ({ onSelectYes }) => {
           }}
         >
           <p
-            className='text-green'
-            style={{ cursor: "pointer", transition: "transform 0.3s ease" }}
+            className='text-green custom-cursor-hover'
+            style={{ transition: "transform 0.3s ease" }}
             onMouseOver={(e) =>
               (e.currentTarget.style.transform = "scale(1.1)")
             }
@@ -75,11 +75,8 @@ const Hello = ({ onSelectYes }) => {
             Yes
           </p>
           <p
-            className='text-violet'
-            style={{
-              cursor: "pointer",
-              transition: "transform 0.3s ease",
-            }}
+            className='text-violet custom-cursor-hover'
+            style={{ transition: "transform 0.3s ease" }}
             onMouseOver={(e) =>
               (e.currentTarget.style.transform = "scale(1.1)")
             }

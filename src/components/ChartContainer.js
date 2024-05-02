@@ -41,10 +41,9 @@ const ChartContainer = ({ sensorData }) => {
           display: "flex",
           alignItems: "center",
           width: 150,
-          cursor: "pointer",
         }}
       >
-        <div className='text-green voxel-font'>
+        <div className='text-green voxel-font custom-cursor-hover'>
           {showAllData ? "Show Today's Data" : "Show All Data"}
         </div>
       </div>
