@@ -18,8 +18,9 @@ import axios from "axios";
 import MossInteraction from "./MossInteraction";
 import MossMessages from "./MossMessages";
 import Audio from "./Audio";
+import AutoScrollableFrame from "./AutoScrollableFrame";
 
-const Layout = React.memo(({ setScrollableRef }) => {
+const Layout = () => {
   const [mossMessages, setMossMessages] = useState([]);
   const [isOnline, setIsOnline] = useState(false);
   const [lastDataTimestamp, setLastDataTimestamp] = useState(Date.now());
@@ -206,7 +207,6 @@ const Layout = React.memo(({ setScrollableRef }) => {
               height: "100%",
               overflowX: "scroll",
             }}
-            ref={setScrollableRef(1)}
           >
             <img
               src={centergif}
@@ -276,24 +276,7 @@ const Layout = React.memo(({ setScrollableRef }) => {
           innerWidth={300}
           innerHeight={230}
         >
-          <div
-            style={{
-              height: "100%",
-              width: "100%",
-              overflowY: "scroll",
-              borderRadius: "40px",
-            }}
-            ref={setScrollableRef(2)} // Pass the setScrollableRef function with index 1
-          >
-            <img
-              src={right}
-              style={{
-                width: 292,
-                height: "auto",
-              }}
-              alt='Scrollable content'
-            />
-          </div>
+          <AutoScrollableFrame />
         </Frame>
         <div
           style={{
@@ -331,6 +314,6 @@ const Layout = React.memo(({ setScrollableRef }) => {
       </div>
     </div>
   );
-});
+};
 
 export default Layout;
