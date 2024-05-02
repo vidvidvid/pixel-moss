@@ -62,14 +62,14 @@ const Audio = React.memo(() => {
               src='/icons/pause.svg'
               alt='pause'
               onClick={togglePlayPause}
-              style={{ cursor: "pointer" }}
+              className="custom-cursor-hover"
             />
           ) : (
             <img
               src='/icons/play.svg'
               alt='play'
               onClick={togglePlayPause}
-              style={{ cursor: "pointer" }}
+              className="custom-cursor-hover"
             />
           )}
           <img src={listeningto} alt='music' style={{ width: 120 }} />

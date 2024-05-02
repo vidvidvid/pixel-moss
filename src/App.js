@@ -62,7 +62,7 @@ function App() {
   const [displayHello, setDisplayHello] = useState(true);
 
   return (
-    <div style={backgroundStyle}>
+    <div style={backgroundStyle} className="custom-cursor"> 
       <Layout setScrollableRef={setScrollableRef} />
       <PixelmossImages />
       {/* <ImpulzImages positions={positions} /> */}
