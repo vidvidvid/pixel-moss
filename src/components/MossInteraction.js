@@ -17,7 +17,7 @@ const MossInteraction = () => {
     setTimeout(() => {
       setIsGlowing(false);
       setMah(moss);
-    }, 1000);
+    }, 3800);
   };
 
   const handleWaterClick = () => {
@@ -26,7 +26,7 @@ const MossInteraction = () => {
     setTimeout(() => {
       setIsWet(false);
       setMah(moss);
-    }, 1000);
+    }, 3800);
   };
 
   return (

@@ -44,14 +44,14 @@ const Layout = React.memo(({ setScrollableRef }) => {
 
   const database = getDatabase(app);
 
-  const [hue, setHue] = useState(0);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setHue((hue) => (hue + 1) % 360);
-    }, 50);
+  // const [hue, setHue] = useState(0);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setHue((hue) => (hue + 1) % 360);
+  //   }, 50);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   useEffect(() => {
     const unsubscribe = subscribeToSensorData(database, (data) => {
@@ -307,7 +307,7 @@ const Layout = React.memo(({ setScrollableRef }) => {
             style={{
               width: "100%",
               height: "100%",
-              filter: `hue-rotate(${hue}deg)`,
+              filter: `hue-rotate(${30}deg)`,
             }}
             alt='nitke'
           />

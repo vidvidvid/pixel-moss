@@ -41,6 +41,7 @@ const ChartContainer = ({ sensorData }) => {
           display: "flex",
           alignItems: "center",
           width: 150,
+          cursor: "pointer",
         }}
       >
         <div className='text-green voxel-font'>
