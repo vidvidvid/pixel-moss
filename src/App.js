@@ -3,6 +3,7 @@ import bgImage from "./assets/bg.png";
 import PixelmossImages from "./components/PixelmossImages";
 import Layout from "./components/Layout";
 import ImpulzImages from "./components/ImpulzImages";
+import Hello from "./components/Hello";
 import "./App.css";
 
 const backgroundStyle = {
@@ -58,11 +59,14 @@ function App() {
     []
   );
 
+  const [displayHello, setDisplayHello] = useState(true);
+
   return (
     <div style={backgroundStyle}>
       <Layout setScrollableRef={setScrollableRef} />
       <PixelmossImages />
       {/* <ImpulzImages positions={positions} /> */}
+      {displayHello && <Hello onSelectYes={() => setDisplayHello(false)} />}
     </div>
   );
 }

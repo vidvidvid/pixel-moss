@@ -18,6 +18,7 @@ const Frame = ({
   innerLeft,
   innerWidth,
   innerHeight,
+  frame,
 }) => {
   const innerFrameStyle = {
     position: "absolute",
@@ -54,7 +55,7 @@ const Frame = ({
 
   const frameStyle = {
     pointerEvents: "none",
-    backgroundImage: `url(${frames[index]})`,
+    backgroundImage: `url(${frame || frames[index]})`,
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",

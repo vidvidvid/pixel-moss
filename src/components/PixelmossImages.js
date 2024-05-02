@@ -33,7 +33,7 @@ const positionStyles = [
   { bottom: "450px", left: "60px", width: "300px" },
   { bottom: "190px", right: "420px", width: "300px" },
   { top: "20px", left: "500px", width: "400px" },
-  { bottom: "370px", right: "220px", width: "330px" },
+  { bottom: "390px", right: "220px", width: "330px" },
 ];
 
 const PixelmossImages = () => {
@@ -46,7 +46,7 @@ const PixelmossImages = () => {
           alt={`Pixelmoss ${index}`}
           style={{
             position: "absolute",
-            // pointerEvents: "none",
+            pointerEvents: "none",
             ...positionStyles[index],
           }}
         />

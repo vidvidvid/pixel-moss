@@ -195,8 +195,8 @@ const Layout = React.memo(({ setScrollableRef }) => {
             left: 500,
           }}
           innerTop={97}
-          innerLeft={242}
-          innerWidth={214}
+          innerLeft={240}
+          innerWidth={220}
           innerHeight={170}
         >
           <div
