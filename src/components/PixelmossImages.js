@@ -25,15 +25,15 @@ const pixelmossImages = [
 
 const positionStyles = [
   { top: "20px", right: "200px", width: "120px" },
-  { top: "270px", left: "300px", width: "400px" },
+  { bottom: "190px", left: "400px", width: "330px" },
   { top: "100px", left: "47%", transform: "translateX(-50%)", width: "300px" },
   { top: "20px", left: "130px", width: "200px" },
-  { top: "20px", right: "400px", width: "400px" },
-  { bottom: "20px", right: "300px", width: "400px", zIndex: 1337 },
-  { bottom: "450px", left: "60px", width: "300px", zIndex: 1337 },
-  { bottom: "120px", right: "360px", width: "400px", zIndex: 1337 },
-  { top: "20px", left: "500px", width: "400px", zIndex: 1337 },
-  { bottom: "370px", right: "150px", width: "350px" },
+  { top: "20px", right: "420px", width: "370px" },
+  { bottom: "20px", left: "370px", width: "300px" },
+  { bottom: "450px", left: "60px", width: "300px" },
+  { bottom: "190px", right: "420px", width: "300px" },
+  { top: "20px", left: "500px", width: "400px" },
+  { bottom: "370px", right: "220px", width: "330px" },
 ];
 
 const PixelmossImages = () => {
@@ -46,7 +46,7 @@ const PixelmossImages = () => {
           alt={`Pixelmoss ${index}`}
           style={{
             position: "absolute",
-            pointerEvents: "none",
+            // pointerEvents: "none",
             ...positionStyles[index],
           }}
         />

@@ -1,36 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
+import listeningto from "../assets/listeningto.svg";
 
 const Audio = React.memo(() => {
-  const [songs, setSongs] = useState([
-    "atmosfericni_bs.mp3",
-    "bff.mp3",
-    "GBnote.mp3",
-    "Spore.mp3",
-  ]);
+  const songs = useMemo(
+    () => ["atmosfericni_bs.mp3", "Spore.mp3", "bff.mp3", "GBnote.mp3"],
+    []
+  );
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [currentSong, setCurrentSong] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
+  const audioPlayerRef = useRef(null);
 
   useEffect(() => {
     setCurrentSong(`/songs/${songs[currentSongIndex]}`);
-  }, [currentSongIndex]);
+    console.log("Current song set to:", `/songs/${songs[currentSongIndex]}`);
+  }, [currentSongIndex, songs]);
 
   useEffect(() => {
-    const audioPlayer = document.getElementById("audioPlayer");
+    const audioPlayer = audioPlayerRef.current;
+
     const handleSongEnd = () => {
-      const nextSongIndex = (currentSongIndex + 1) % songs.length; // Loop back to the first song after the last one
+      console.log("Song ended. Moving to next.");
+      const nextSongIndex = (currentSongIndex + 1) % songs.length;
       setCurrentSongIndex(nextSongIndex);
     };
 
-    audioPlayer.addEventListener("ended", handleSongEnd);
+    if (audioPlayer) {
+      audioPlayer.addEventListener("ended", handleSongEnd);
+      return () => audioPlayer.removeEventListener("ended", handleSongEnd);
+    }
+  }, [currentSongIndex, songs.length]);
 
-    return () => {
-      audioPlayer.removeEventListener("ended", handleSongEnd);
-    };
-  }, [currentSongIndex, songs]);
+  useEffect(() => {
+    const audioPlayer = audioPlayerRef.current;
+    if (audioPlayer) {
+      audioPlayer.play().catch((error) => console.error("Play failed:", error));
+    }
+  }, [currentSong]);
 
   const togglePlayPause = () => {
-    const audioPlayer = document.getElementById("audioPlayer");
+    const audioPlayer = audioPlayerRef.current;
     if (audioPlayer.paused) {
       audioPlayer.play();
       setIsPlaying(true);
@@ -40,22 +49,14 @@ const Audio = React.memo(() => {
     }
   };
 
-  const getSongTitle = () => {
-    return songs[currentSongIndex].replace(".mp3", "");
-  };
+  const getSongTitle = () => songs[currentSongIndex].replace(".wav", "");
 
   const songTitle = getSongTitle();
 
   return (
     <div style={{ position: "absolute", left: -300, top: -20, width: 300 }}>
-      <div
-        className='text-green voxel-font'
-        style={{ fontSize: 40, marginBottom: 10 }}
-      >
-        Pixel Moss
-      </div>
-      <div style={{ marginTop: 24, marginLeft: 100 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 40 }}>
+      <div style={{ marginTop: 75, marginLeft: 100 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 30 }}>
           {isPlaying ? (
             <img
               src='/icons/pause.svg'
@@ -71,12 +72,21 @@ const Audio = React.memo(() => {
               style={{ cursor: "pointer" }}
             />
           )}
-          <p className='voxel-font' style={{ color: "rgb(198, 164, 255)" }}>
-            Listening to
-          </p>
+          <img src={listeningto} alt='music' style={{ width: 120 }} />
         </div>
-        <audio id='audioPlayer' style={{ display: "none" }} src={currentSong} />
-        <div style={{ whiteSpace: "nowrap", overflow: "hidden" }}>
+        <audio
+          ref={audioPlayerRef}
+          style={{ display: "none" }}
+          src={currentSong}
+        />
+        <div
+          style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            marginLeft: -36,
+            marginTop: 10,
+          }}
+        >
           <div
             style={{
               display: "inline-block",
@@ -84,6 +94,7 @@ const Audio = React.memo(() => {
               animation: "scroll 15s linear infinite",
               color: "white",
             }}
+            className='voxel-font text-shadow'
           >
             {songTitle} - by Pixel Bambi
           </div>

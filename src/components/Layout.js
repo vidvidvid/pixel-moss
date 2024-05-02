@@ -44,6 +44,15 @@ const Layout = React.memo(({ setScrollableRef }) => {
 
   const database = getDatabase(app);
 
+  const [hue, setHue] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHue((hue) => (hue + 1) % 360);
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     const unsubscribe = subscribeToSensorData(database, (data) => {
       setSensorData(data);
@@ -215,23 +224,33 @@ const Layout = React.memo(({ setScrollableRef }) => {
             right: 60,
           }}
           innerTop={40}
-          innerLeft={105}
-          innerWidth={290}
+          innerLeft={100}
+          innerWidth={305}
           innerHeight={410}
         >
           <div
             style={{
-              width: "80%",
+              width: "78%",
               height: "90%",
-              overflowY: "scroll",
-              padding: 10,
+              marginLeft: 10,
             }}
           >
-            <p className='text-green'>About</p>
+            <p
+              className='text-green voxel-font'
+              style={{
+                padding: 10,
+                fontSize: 20,
+                fontWeight: "bold",
+                paddingBottom: 0,
+              }}
+            >
+              About
+            </p>
             <p
               style={{
                 color: "white",
                 fontSize: 20,
+                padding: "0 10px",
               }}
               className='scum-font'
             >
@@ -288,6 +307,7 @@ const Layout = React.memo(({ setScrollableRef }) => {
             style={{
               width: "100%",
               height: "100%",
+              filter: `hue-rotate(${hue}deg)`,
             }}
             alt='nitke'
           />

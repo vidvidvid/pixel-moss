@@ -56,11 +56,25 @@ function RealTimeChart({ data }) {
             name: "Light Level",
             type: "line",
             data: data.map((item) => [new Date(item.time), item.lightLevel]),
+            lineStyle: {
+              color: "#D3FF00", // Set the line color for Moisture Level
+              width: 2, // Optional: adjust line width
+            },
+            itemStyle: {
+              color: "#D3FF00", // Ensures points on the line match the line color
+            },
           },
           {
             name: "Moisture Level",
             type: "line",
             data: data.map((item) => [new Date(item.time), item.moistureLevel]),
+            lineStyle: {
+              color: "#C6A4FF", // Set the line color for Light Level
+              width: 2, // Optional: adjust line width
+            },
+            itemStyle: {
+              color: "#C6A4FF", // Ensures points on the line match the line color
+            },
           },
         ],
       };
