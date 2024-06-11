@@ -16,15 +16,20 @@ import { formPrompt } from "../prompt";
 import axios from "axios";
 import MossInteraction from "./MossInteraction";
 import MossMessages from "./MossMessages";
-import Audio from "./Audio";
+import AudioVertical from "./AudioVertical";
 
-const Layout = React.memo(({ setScrollableRef }) => {
+const LayoutVertical = React.memo(({ setScrollableRef }) => {
   const [mossMessages, setMossMessages] = useState([]);
   const [isOnline, setIsOnline] = useState(false);
   const [lastDataTimestamp, setLastDataTimestamp] = useState(Date.now());
   const [lastSent, setLastSent] = useState(() => {
     return localStorage.getItem("lastSent") || new Date().toISOString();
   });
+
+  const innerWidth = window.innerWidth;
+  console.log("innerWidth", innerWidth);
+  const innerHeight = window.innerHeight;
+  console.log("innerHeight", innerHeight);
 
   const layoutStyle = {
     display: "flex",
@@ -41,8 +46,10 @@ const Layout = React.memo(({ setScrollableRef }) => {
   };
 
   const [sensorData, setSensorData] = useState([]);
+  console.log("sensorData", sensorData);
 
   const database = getDatabase(app);
+  console.log("database", database);
 
   // const [hue, setHue] = useState(0);
   // useEffect(() => {
@@ -149,55 +156,58 @@ const Layout = React.memo(({ setScrollableRef }) => {
       <div style={horizontalContainerStyle}>
         <Frame
           index={0}
-          height='400px'
-          width='900px'
+          height='25%'
+          width='90%'
           position={{ top: 60, left: 30 }}
-          innerTop={20}
+          innerTop={-10}
           innerLeft={20}
           innerWidth='45%'
           innerHeight='73%'
         >
-          <ChartContainer sensorData={sensorData} />
+          <ChartContainer
+            sensorData={sensorData}
+            showTodayOffset={-innerHeight * 0.05}
+          />
         </Frame>
         <Frame
           index={1}
-          height='400px'
-          width='400px'
-          position={{ bottom: 40, left: "0" }}
-          innerTop={35}
-          innerLeft={100}
-          innerWidth={224}
+          height='29%'
+          width='40%'
+          position={{ bottom: 80, left: 60 }}
+          innerTop={25}
+          innerLeft={60}
+          innerWidth='73%'
           innerHeight='85%'
         >
           <MossInteraction />
         </Frame>
         <Frame
           index={2}
-          height='550px'
-          width='850px'
+          height='33%'
+          width='75%'
           position={{
-            top: 100,
-            left: 450,
+            top: "30%",
+            left: 20,
           }}
           innerTop={90}
-          innerLeft={160}
-          innerWidth='61%'
+          innerLeft={100}
+          innerWidth='74%'
           innerHeight='66%'
         >
           <MossMessages mossMessages={mossMessages} isOnline={isOnline} />
         </Frame>
         <Frame
-          index={3}
-          height='300px'
-          width='600px'
+          index={6}
+          height='15%'
+          width='53%'
           position={{
-            bottom: 40,
-            left: 500,
+            bottom: "20%",
+            right: 20,
           }}
-          innerTop={97}
-          innerLeft={240}
-          innerWidth={220}
-          innerHeight={170}
+          innerTop={20}
+          innerLeft={115}
+          innerWidth='36%'
+          innerHeight='55%'
         >
           <div
             style={{
@@ -213,20 +223,20 @@ const Layout = React.memo(({ setScrollableRef }) => {
               alt='Scrollable content'
             />
           </div>
-          <Audio />
+          <AudioVertical />
         </Frame>
         <Frame
           index={4}
-          height='550px'
-          width='440px'
+          height='32%'
+          width='44%'
           position={{
-            top: 40,
-            right: 60,
+            top: 85,
+            right: 40,
           }}
-          innerTop={40}
-          innerLeft={100}
-          innerWidth={305}
-          innerHeight={410}
+          innerTop={35}
+          innerLeft={93}
+          innerWidth='67%'
+          innerHeight='70%'
         >
           <div
             style={{
@@ -239,7 +249,7 @@ const Layout = React.memo(({ setScrollableRef }) => {
               className='text-green voxel-font'
               style={{
                 padding: 10,
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: "bold",
                 paddingBottom: 0,
               }}
@@ -249,7 +259,7 @@ const Layout = React.memo(({ setScrollableRef }) => {
             <p
               style={{
                 color: "white",
-                fontSize: 20,
+                fontSize: 18,
                 padding: "0 10px",
               }}
               className='scum-font'
@@ -264,14 +274,14 @@ const Layout = React.memo(({ setScrollableRef }) => {
         </Frame>
         <Frame
           index={5}
-          height='400px'
-          width='600px'
+          height='25%'
+          width='58%'
           position={{
             bottom: 34,
-            right: 30,
+            right: 10,
           }}
           innerTop={142}
-          innerLeft={239}
+          innerLeft={198}
           innerWidth={300}
           innerHeight={230}
         >
@@ -294,12 +304,14 @@ const Layout = React.memo(({ setScrollableRef }) => {
             />
           </div>
         </Frame>
+
         <div
           style={{
-            position: "absolute",
+            position: "fixed",
             top: 0,
-            height: "100vh",
-            width: "100vw",
+            height: "100vw",
+            width: "100vh",
+            // transform: "rotate(90deg)",
           }}
         >
           <img
@@ -314,15 +326,18 @@ const Layout = React.memo(({ setScrollableRef }) => {
         </div>
         <div
           style={{
-            position: "absolute",
-            top: 0,
-            right: 230,
+            height: "100vh",
+            width: "100vw",
           }}
         >
           <img
             src={mahci}
             style={{
-              height: "100vh",
+              position: "absolute",
+              top: "30%",
+              right: 20,
+              height: "36%",
+              width: "30%",
             }}
             alt='mahci'
           />
@@ -332,4 +347,4 @@ const Layout = React.memo(({ setScrollableRef }) => {
   );
 });
 
-export default Layout;
+export default LayoutVertical;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moss from "../assets/interact/moss.png";
 import animate from "../assets/interact/animate.gif";
 import wet from "../assets/interact/wet.svg";
@@ -29,6 +29,22 @@ const MossInteraction = () => {
     }, 3800);
   };
 
+  const [isVertical, setIsVertical] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const { innerWidth, innerHeight } = window;
+      setIsVertical(innerHeight / innerWidth > 1);
+    };
+
+    handleResize(); // Check on initial load
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div
       style={{
@@ -48,7 +64,7 @@ const MossInteraction = () => {
           height: "100%",
           width: "100%",
           top: 70,
-          left: -20,
+          left: 0,
           position: "absolute",
         }}
       >
@@ -107,7 +123,7 @@ const MossInteraction = () => {
             transition: "opacity 0.5s ease",
             position: "absolute",
             bottom: "50px",
-            left: 85,
+            left: isVertical ? 115 : 95,
           }}
           alt='Wet'
         />
@@ -121,19 +137,19 @@ const MossInteraction = () => {
             transition: "opacity 0.5s ease",
             position: "absolute",
             bottom: 70,
-            left: 70,
+            left: isVertical ? 100 : 85,
           }}
           alt='Glow'
         />
         <img
           src={mah}
           style={{
-            width: 260,
+            width: 240,
             position: "relative",
             opacity: isGlowing ? 1 : isWet ? 0.8 : 1,
             filter: isGlowing ? "brightness(1.2)" : "none",
             transition: "opacity 0.5s ease, filter 0.5s ease",
-            left: 10,
+            left: isVertical ? 42 : 26,
             zIndex: 0,
             bottom: -10,
           }}

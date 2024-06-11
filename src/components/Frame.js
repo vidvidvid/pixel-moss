@@ -5,8 +5,9 @@ import frame2 from "../assets/frames/frame2.png";
 import frame3 from "../assets/frames/frame3.png";
 import frame4 from "../assets/frames/frame4.png";
 import frame5 from "../assets/frames/frame5.png";
+import frame6 from "../assets/frames/frame6.png";
 
-const frames = [frame0, frame1, frame2, frame3, frame4, frame5];
+const frames = [frame0, frame1, frame2, frame3, frame4, frame5, frame6];
 
 const Frame = ({
   children,
@@ -58,7 +59,6 @@ const Frame = ({
     backgroundImage: `url(${frame || frames[index]})`,
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
     width: "100%",
     height: "100%",
     position: "relative",

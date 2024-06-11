@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import RealTimeChart from "./RealTimeChart";
 
-const ChartContainer = ({ sensorData }) => {
+const ChartContainer = ({ sensorData, showTodayOffset = -85 }) => {
+  console.log("showTodayOffset", showTodayOffset);
   const [showAllData, setShowAllData] = useState(true);
 
   const toggleDataView = () => setShowAllData(!showAllData);
@@ -36,7 +37,7 @@ const ChartContainer = ({ sensorData }) => {
         onClick={toggleDataView}
         style={{
           position: "absolute",
-          bottom: -85,
+          bottom: showTodayOffset,
           right: 0,
           display: "flex",
           alignItems: "center",
