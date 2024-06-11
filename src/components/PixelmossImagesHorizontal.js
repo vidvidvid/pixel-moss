@@ -36,7 +36,7 @@ const positionStyles = [
   { bottom: "390px", right: "220px", width: "330px" },
 ];
 
-const PixelmossImages = () => {
+const PixelmossImagesHorizontal = () => {
   return (
     <>
       {pixelmossImages.map((img, index) => (
@@ -55,4 +55,4 @@ const PixelmossImages = () => {
   );
 };
 
-export default PixelmossImages;
+export default PixelmossImagesHorizontal;

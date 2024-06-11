@@ -77,12 +77,12 @@ const AudioVertical = React.memo(() => {
         />
         <div
           style={{
-            width: "100%",
+            width: "93%",
             display: "flex",
             justifyContent: "space-between",
             gap: 20,
             paddingTop: 10,
-            marginRight: 10,
+            marginRight: 0,
           }}
         >
           <div

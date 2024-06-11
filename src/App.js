@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import bgImage from "./assets/bg.png";
-import PixelmossImages from "./components/PixelmossImages";
+import PixelmossImagesHorizontal from "./components/PixelmossImagesHorizontal";
 import LayoutHorizontal from "./components/LayoutHorizontal";
 import LayoutVertical from "./components/LayoutVertical";
 import Hello from "./components/Hello";
 import "./App.css";
+import PixelmossImagesVertical from "./components/PixelmossImagesVertical";
 
 const backgroundStyle = {
   backgroundImage: `url(${bgImage})`,
@@ -52,7 +53,7 @@ function App() {
       )}
       {/* <PixelmossImages /> */}
       {/* <ImpulzImages positions={positions} /> */}
-      <PixelmossImages />
+      {isVertical ? <PixelmossImagesVertical /> : <PixelmossImagesHorizontal />}
       {displayHello && <Hello onSelectYes={() => setDisplayHello(false)} />}
     </div>
   );

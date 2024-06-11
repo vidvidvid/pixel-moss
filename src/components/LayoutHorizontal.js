@@ -8,8 +8,6 @@ import {
 import { app } from "../firebaseConfig";
 import Frame from "./Frame";
 import ChartContainer from "./ChartContainer";
-import right from "../assets/memes/right.png";
-import center from "../assets/memes/center.png";
 import centergif from "../assets/memes/center.gif";
 import mahci from "../assets/mahci.gif";
 import nitke from "../assets/nitke.gif";

@@ -157,12 +157,12 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
         <Frame
           index={0}
           height='25%'
-          width='90%'
-          position={{ top: 60, left: 30 }}
+          width='95%'
+          position={{ top: 20, left: 30 }}
           innerTop={-10}
           innerLeft={20}
           innerWidth='45%'
-          innerHeight='73%'
+          innerHeight='77%'
         >
           <ChartContainer
             sensorData={sensorData}
@@ -204,9 +204,9 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
             bottom: "20%",
             right: 20,
           }}
-          innerTop={20}
-          innerLeft={115}
-          innerWidth='36%'
+          innerTop='10%'
+          innerLeft='22%'
+          innerWidth='38%'
           innerHeight='55%'
         >
           <div
@@ -233,8 +233,8 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
             top: 85,
             right: 40,
           }}
-          innerTop={35}
-          innerLeft={93}
+          innerTop='7%'
+          innerLeft='24%'
           innerWidth='67%'
           innerHeight='70%'
         >
@@ -274,16 +274,16 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
         </Frame>
         <Frame
           index={5}
-          height='25%'
-          width='58%'
+          height='27%'
+          width='60%'
           position={{
             bottom: 34,
             right: 10,
           }}
-          innerTop={142}
-          innerLeft={198}
-          innerWidth={300}
-          innerHeight={230}
+          innerTop='33%'
+          innerLeft='37%'
+          innerWidth='58%'
+          innerHeight='60%'
         >
           <AutoScrollableFrame />
         </Frame>

@@ -1,10 +1,8 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import right from "../assets/memes/right.png";
 
 const AutoScrollableFrame = () => {
   const scrollableRef = useRef(null);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState(1); // 1 for scrolling down, -1 for scrolling up
 
   useEffect(() => {
     let animationFrameId;
@@ -16,31 +14,14 @@ const AutoScrollableFrame = () => {
         return;
       }
 
-      const { scrollTop, scrollHeight, clientHeight } = scrollableElement;
+      const { scrollTop, scrollHeight } = scrollableElement;
 
-      // Check if the user has scrolled
-      if (scrollTop !== lastScrollTop) {
-        // Update last scroll top
-        setLastScrollTop(scrollTop);
+      if (scrollTop >= scrollHeight / 2) {
+        // Reset scroll position to create a seamless loop
+        scrollableElement.scrollTop = scrollTop - scrollHeight / 2;
       } else {
-        // If the user hasn't scrolled, continue auto-scrolling
-        if (scrollDirection === 1) {
-          if (scrollTop >= scrollHeight - clientHeight) {
-            // Reverse scroll direction if at the bottom
-            setScrollDirection(-1);
-          } else {
-            // Continue scrolling down
-            scrollableElement.scrollTop += 0.5; // or whatever scroll speed you prefer
-          }
-        } else {
-          if (scrollTop === 0) {
-            // Reverse scroll direction if at the top
-            setScrollDirection(1);
-          } else {
-            // Continue scrolling up
-            scrollableElement.scrollTop -= 1; // or whatever scroll speed you prefer
-          }
-        }
+        // Continue scrolling down
+        scrollableElement.scrollTop += 0.5; // Adjust scroll speed as needed
       }
 
       // Request the next animation frame
@@ -52,7 +33,7 @@ const AutoScrollableFrame = () => {
 
     // Cleanup function to cancel animation frame on unmount
     return () => cancelAnimationFrame(animationFrameId);
-  }, [lastScrollTop, scrollDirection]); // Re-run effect when lastScrollTop or scrollDirection changes
+  }, []); // Empty dependency array to run only on mount
 
   return (
     <div
@@ -64,14 +45,24 @@ const AutoScrollableFrame = () => {
         borderRadius: "40px",
       }}
     >
-      <img
-        src={right}
-        style={{
-          width: 292,
-          height: "auto",
-        }}
-        alt='Scrollable content'
-      />
+      <div>
+        <img
+          src={right}
+          style={{
+            width: "100%",
+            height: "auto",
+          }}
+          alt='Scrollable content'
+        />
+        <img
+          src={right}
+          style={{
+            width: "100%",
+            height: "auto",
+          }}
+          alt='Scrollable content'
+        />
+      </div>
     </div>
   );
 };

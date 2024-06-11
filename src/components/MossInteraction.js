@@ -64,7 +64,7 @@ const MossInteraction = () => {
           height: "100%",
           width: "100%",
           top: 70,
-          left: 0,
+          left: isVertical ? -20 : 0,
           position: "absolute",
         }}
       >
@@ -110,7 +110,13 @@ const MossInteraction = () => {
           Shine for me
         </button>
       </div>
-      <div style={{ position: "absolute", bottom: 0, left: -20 }}>
+      <div
+        style={{
+          position: "absolute",
+          bottom: isVertical ? 20 : 0,
+          left: -20,
+        }}
+      >
         <img
           src={wet}
           style={{

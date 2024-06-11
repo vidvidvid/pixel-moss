@@ -29,6 +29,8 @@ const Frame = ({
     height: innerHeight || "60%",
     zIndex: 2, // Inner frame has a lower zIndex
     pointerEvents: "all",
+    borderRadius: "50px",
+    overflow: "hidden",
   };
 
   const contentStyle = {
