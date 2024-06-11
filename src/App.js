@@ -3,7 +3,6 @@ import bgImage from "./assets/bg.png";
 import PixelmossImages from "./components/PixelmossImages";
 import LayoutHorizontal from "./components/LayoutHorizontal";
 import LayoutVertical from "./components/LayoutVertical";
-import ImpulzImages from "./components/ImpulzImages";
 import Hello from "./components/Hello";
 import "./App.css";
 
@@ -45,7 +44,7 @@ function App() {
   }, []);
 
   return (
-    <div style={backgroundStyle}>
+    <div style={backgroundStyle} className='custom-cursor'>
       {isVertical ? (
         <LayoutVertical setScrollableRef={setScrollableRef} />
       ) : (
@@ -53,6 +52,7 @@ function App() {
       )}
       {/* <PixelmossImages /> */}
       {/* <ImpulzImages positions={positions} /> */}
+      <PixelmossImages />
       {displayHello && <Hello onSelectYes={() => setDisplayHello(false)} />}
     </div>
   );

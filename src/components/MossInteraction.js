@@ -17,7 +17,7 @@ const MossInteraction = () => {
     setTimeout(() => {
       setIsGlowing(false);
       setMah(moss);
-    }, 3800);
+    }, 3750);
   };
 
   const handleWaterClick = () => {
@@ -26,7 +26,7 @@ const MossInteraction = () => {
     setTimeout(() => {
       setIsWet(false);
       setMah(moss);
-    }, 3800);
+    }, 3750);
   };
 
   const [isVertical, setIsVertical] = useState(false);
@@ -74,11 +74,10 @@ const MossInteraction = () => {
             background: "transparent",
             border: "none",
             fontSize: 18,
-            cursor: "pointer",
             transition: "transform 0.2s",
             height: 35,
           }}
-          className='scum-font'
+          className='scum-font custom-cursor-hover'
           onClick={handleWaterClick}
           onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
           onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
@@ -96,10 +95,9 @@ const MossInteraction = () => {
             background: "transparent",
             border: "none",
             fontSize: 18,
-            cursor: "pointer",
             transition: "transform 0.2s",
           }}
-          className='scum-font'
+          className='scum-font custom-cursor-hover'
           onClick={handleGlowClick}
           onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
           onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
@@ -116,7 +114,7 @@ const MossInteraction = () => {
         <img
           src={wet}
           style={{
-            width: 90,
+            width: 80,
             height: "auto",
             zIndex: 10000,
             opacity: isWet ? 1 : 0,
