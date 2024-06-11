@@ -8,8 +8,7 @@ import {
 import { app } from "../firebaseConfig";
 import Frame from "./Frame";
 import ChartContainer from "./ChartContainer";
-import right from "../assets/memes/right.png";
-import center from "../assets/memes/center.png";
+import centergif from "../assets/memes/center.gif";
 import mahci from "../assets/mahci.gif";
 import nitke from "../assets/nitke.gif";
 import { formPrompt } from "../prompt";
@@ -17,6 +16,7 @@ import axios from "axios";
 import MossInteraction from "./MossInteraction";
 import MossMessages from "./MossMessages";
 import AudioVertical from "./AudioVertical";
+import AutoScrollableFrame from "./AutoScrollableFrame";
 
 const LayoutVertical = React.memo(({ setScrollableRef }) => {
   const [mossMessages, setMossMessages] = useState([]);
@@ -218,7 +218,7 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
             ref={setScrollableRef(1)}
           >
             <img
-              src={center}
+              src={centergif}
               style={{ height: "100%", width: "auto" }}
               alt='Scrollable content'
             />
@@ -285,24 +285,7 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
           innerWidth={300}
           innerHeight={230}
         >
-          <div
-            style={{
-              height: "100%",
-              width: "100%",
-              overflowY: "scroll",
-              borderRadius: "40px",
-            }}
-            ref={setScrollableRef(2)} // Pass the setScrollableRef function with index 1
-          >
-            <img
-              src={right}
-              style={{
-                width: 292,
-                height: "auto",
-              }}
-              alt='Scrollable content'
-            />
-          </div>
+          <AutoScrollableFrame />
         </Frame>
 
         <div

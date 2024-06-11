@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
-import right from '../assets/memes/right.png';
+import React, { useRef, useEffect, useState } from "react";
+import right from "../assets/memes/right.png";
 
 const AutoScrollableFrame = () => {
   const scrollableRef = useRef(null);
@@ -11,6 +11,11 @@ const AutoScrollableFrame = () => {
 
     const autoScroll = () => {
       const scrollableElement = scrollableRef.current;
+
+      if (!scrollableElement) {
+        return;
+      }
+
       const { scrollTop, scrollHeight, clientHeight } = scrollableElement;
 
       // Check if the user has scrolled
