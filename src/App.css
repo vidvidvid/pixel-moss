@@ -95,3 +95,24 @@
 .custom-cursor-hover {
   cursor: url('/public/cursor/klik.svg'), auto;
 }
+
+.vertical-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.vertical-content {
+  aspect-ratio: 9 / 16;
+  max-width: 100%;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}

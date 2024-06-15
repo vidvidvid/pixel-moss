@@ -47,13 +47,18 @@ function App() {
   return (
     <div style={backgroundStyle} className='custom-cursor'>
       {isVertical ? (
-        <LayoutVertical setScrollableRef={setScrollableRef} />
+        <div className='vertical-container'>
+          <div className='vertical-content'>
+            <LayoutVertical setScrollableRef={setScrollableRef} />
+            <PixelmossImagesVertical />
+          </div>
+        </div>
       ) : (
-        <LayoutHorizontal setScrollableRef={setScrollableRef} />
+        <>
+          <LayoutHorizontal setScrollableRef={setScrollableRef} />
+          <PixelmossImagesHorizontal />
+        </>
       )}
-      {/* <PixelmossImages /> */}
-      {/* <ImpulzImages positions={positions} /> */}
-      {isVertical ? <PixelmossImagesVertical /> : <PixelmossImagesHorizontal />}
       {displayHello && <Hello onSelectYes={() => setDisplayHello(false)} />}
     </div>
   );
