@@ -193,6 +193,17 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
         >
           <MossMessages mossMessages={mossMessages} isOnline={isOnline} />
         </Frame>
+        <div
+          style={{
+            height: "15%",
+            width: "53%",
+            bottom: "22%",
+            right: 20,
+            position: "absolute",
+          }}
+        >
+          <AudioVertical />
+        </div>
         <Frame
           index={6}
           height='15%'
@@ -220,7 +231,6 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
               alt='Scrollable content'
             />
           </div>
-          <AudioVertical />
         </Frame>
         {/* about */}
         <Frame
@@ -283,10 +293,10 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
             bottom: 34,
             right: 10,
           }}
-          innerTop='33%'
+          innerTop='38%'
           innerLeft='37%'
           innerWidth='58%'
-          innerHeight='60%'
+          innerHeight='55%'
         >
           <AutoScrollableFrame />
         </Frame>

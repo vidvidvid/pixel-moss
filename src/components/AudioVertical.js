@@ -54,7 +54,7 @@ const AudioVertical = React.memo(() => {
   const songTitle = getSongTitle();
 
   return (
-    <div style={{ position: "absolute", left: 187, top: 37, width: 160 }}>
+    <div style={{ position: "absolute", right: 20, top: 74, width: 188 }}>
       <div>
         <div
           style={{
