@@ -26,10 +26,7 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
     return localStorage.getItem("lastSent") || new Date().toISOString();
   });
 
-  const innerWidth = window.innerWidth;
-  console.log("innerWidth", innerWidth);
   const innerHeight = window.innerHeight;
-  console.log("innerHeight", innerHeight);
 
   const layoutStyle = {
     display: "flex",
@@ -171,9 +168,9 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
         </Frame>
         <Frame
           index={1}
-          height='29%'
-          width='40%'
-          position={{ bottom: 80, left: 60 }}
+          height='30%'
+          width='41%'
+          position={{ bottom: "6%", left: "5%" }}
           innerTop={25}
           innerLeft={60}
           innerWidth='73%'
@@ -184,10 +181,10 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
         <Frame
           index={2}
           height='33%'
-          width='75%'
+          width='76%'
           position={{
             top: "30%",
-            left: 20,
+            left: "1%",
           }}
           innerTop={90}
           innerLeft={100}
@@ -201,7 +198,7 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
           height='15%'
           width='53%'
           position={{
-            bottom: "20%",
+            bottom: "22%",
             right: 20,
           }}
           innerTop='10%'
@@ -225,6 +222,7 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
           </div>
           <AudioVertical />
         </Frame>
+        {/* about */}
         <Frame
           index={4}
           height='32%'
@@ -246,12 +244,13 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
             }}
           >
             <p
-              className='text-green voxel-font'
+              className='text-green'
               style={{
                 padding: 10,
                 fontSize: 18,
                 fontWeight: "bold",
                 paddingBottom: 0,
+                marginBottom: 0,
               }}
             >
               About
@@ -259,8 +258,10 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
             <p
               style={{
                 color: "white",
-                fontSize: 18,
+                fontSize: 22,
                 padding: "0 10px",
+                marginTop: 0,
+                lineHeight: "1.2em",
               }}
               className='scum-font'
             >
@@ -272,10 +273,12 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
             </p>
           </div>
         </Frame>
+
+        {/* autoscrollable */}
         <Frame
           index={5}
-          height='27%'
-          width='60%'
+          height='30%'
+          width='69%'
           position={{
             bottom: 34,
             right: 10,
@@ -317,10 +320,10 @@ const LayoutVertical = React.memo(({ setScrollableRef }) => {
             src={mahci}
             style={{
               position: "absolute",
-              top: "30%",
-              right: 20,
-              height: "36%",
-              width: "30%",
+              top: "26%",
+              right: -43,
+              height: "39%",
+              width: "40%",
             }}
             alt='mahci'
           />

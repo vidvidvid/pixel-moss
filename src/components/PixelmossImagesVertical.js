@@ -17,11 +17,11 @@ const pixelmossImages = [
 
 const positionStyles = [
   { top: "60px", right: "60px", width: "15%" },
-  { bottom: "17%", right: "23%", width: "25%" },
+  { bottom: "20%", right: "28%", width: "24%" },
   { top: "30%", left: "34%", transform: "translateX(-50%)", width: "33%" },
   { top: "25%", left: "40px", width: "20%" },
   { bottom: "40px", left: "40px", width: "24%" },
-  { bottom: "35%", left: "15%", width: "24%" },
+  { bottom: "37%", left: "15%", width: "24%" },
 ];
 
 const PixelmossImagesVertical = () => {
