@@ -1,15 +1,13 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import listeningto from "../assets/listeningto.svg";
 
-const Audio = React.memo(() => {
+const Audio = React.memo(({ audioPlayerRef, isPlaying, togglePlayPause }) => {
   const songs = useMemo(
     () => ["atmosfericni_bs.mp3", "Spore.mp3", "bff.mp3", "GBnote.mp3"],
     []
   );
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [currentSong, setCurrentSong] = useState("");
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioPlayerRef = useRef(null);
 
   useEffect(() => {
     setCurrentSong(`/songs/${songs[currentSongIndex]}`);
@@ -29,47 +27,44 @@ const Audio = React.memo(() => {
       audioPlayer.addEventListener("ended", handleSongEnd);
       return () => audioPlayer.removeEventListener("ended", handleSongEnd);
     }
-  }, [currentSongIndex, songs.length]);
-
-  useEffect(() => {
-    const audioPlayer = audioPlayerRef.current;
-    if (audioPlayer) {
-      audioPlayer.play().catch((error) => console.error("Play failed:", error));
-    }
-  }, [currentSong]);
-
-  const togglePlayPause = () => {
-    const audioPlayer = audioPlayerRef.current;
-    if (audioPlayer.paused) {
-      audioPlayer.play();
-      setIsPlaying(true);
-    } else {
-      audioPlayer.pause();
-      setIsPlaying(false);
-    }
-  };
+  }, [audioPlayerRef, currentSongIndex, songs.length]);
 
   const getSongTitle = () => songs[currentSongIndex].replace(".wav", "");
 
   const songTitle = getSongTitle();
 
   return (
-    <div style={{ position: "absolute", left: -300, top: -20, width: 300 }}>
+    <div
+      style={{
+        position: "absolute",
+        left: 446,
+        bottom: 149,
+        width: 300,
+        pointerEvents: "all",
+      }}
+    >
       <div style={{ marginTop: 75, marginLeft: 100 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 30 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 30,
+            zIndex: 1000000,
+          }}
+        >
           {isPlaying ? (
             <img
               src='/icons/pause.svg'
               alt='pause'
               onClick={togglePlayPause}
-              className="custom-cursor-hover"
+              className='custom-cursor-hover'
             />
           ) : (
             <img
               src='/icons/play.svg'
               alt='play'
               onClick={togglePlayPause}
-              className="custom-cursor-hover"
+              className='custom-cursor-hover'
             />
           )}
           <img src={listeningto} alt='music' style={{ width: 120 }} />

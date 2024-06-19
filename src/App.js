@@ -43,23 +43,54 @@ function App() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const audioPlayerRef = useRef(null);
+
+  const togglePlayPause = () => {
+    const audioPlayer = audioPlayerRef.current;
+    // audioPlayer.play();
+    // console.log("audioPlayer", audioPlayer);
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+      setIsPlaying(true);
+    } else {
+      audioPlayer.pause();
+      setIsPlaying(false);
+    }
+  };
 
   return (
     <div style={backgroundStyle} className='custom-cursor'>
       {isVertical ? (
         <div className='vertical-container'>
           <div className='vertical-content'>
-            <LayoutVertical setScrollableRef={setScrollableRef} />
+            <LayoutVertical
+              setScrollableRef={setScrollableRef}
+              audioPlayerRef={audioPlayerRef}
+              isPlaying={isPlaying}
+              togglePlayPause={togglePlayPause}
+            />
             <PixelmossImagesVertical />
           </div>
         </div>
       ) : (
         <>
-          <LayoutHorizontal setScrollableRef={setScrollableRef} />
+          <LayoutHorizontal
+            setScrollableRef={setScrollableRef}
+            audioPlayerRef={audioPlayerRef}
+            isPlaying={isPlaying}
+            togglePlayPause={togglePlayPause}
+          />
           <PixelmossImagesHorizontal />
         </>
       )}
-      {displayHello && <Hello onSelectYes={() => setDisplayHello(false)} />}
+      {displayHello && (
+        <Hello
+          onSelectYes={() => setDisplayHello(false)}
+          togglePlayPause={togglePlayPause}
+        />
+      )}
     </div>
   );
 }

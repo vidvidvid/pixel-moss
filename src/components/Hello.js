@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import hello from "../assets/hello.png";
-import Frame from "./Frame";
 
-const Hello = ({ onSelectYes }) => {
-  console.log("lalalal");
-
+const Hello = ({ onSelectYes, togglePlayPause }) => {
   const [selectNo, setSelectNo] = useState(false);
 
   return (
@@ -69,7 +66,10 @@ const Hello = ({ onSelectYes }) => {
             onMouseOver={(e) =>
               (e.currentTarget.style.transform = "scale(1.1)")
             }
-            onClick={onSelectYes}
+            onClick={() => {
+              togglePlayPause();
+              onSelectYes();
+            }}
             onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
           >
             Yes
