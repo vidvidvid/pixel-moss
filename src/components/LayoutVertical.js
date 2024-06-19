@@ -188,10 +188,10 @@ const LayoutVertical = React.memo(
               top: "30%",
               left: "1%",
             }}
-            innerTop={90}
+            innerTop={80}
             innerLeft={100}
             innerWidth='74%'
-            innerHeight='66%'
+            innerHeight='76%'
           >
             <MossMessages mossMessages={mossMessages} isOnline={isOnline} />
           </Frame>

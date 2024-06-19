@@ -172,10 +172,10 @@ const LayoutHorizontal = React.memo(
               top: 100,
               left: 535,
             }}
-            innerTop={90}
+            innerTop={70}
             innerLeft={85}
             innerWidth='61%'
-            innerHeight='66%'
+            innerHeight='76%'
           >
             <MossMessages mossMessages={mossMessages} isOnline={isOnline} />
           </Frame>
