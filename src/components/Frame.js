@@ -20,6 +20,7 @@ const Frame = ({
   innerWidth,
   innerHeight,
   frame,
+  isOverflowVisible,
 }) => {
   const innerFrameStyle = {
     position: "absolute",
@@ -30,7 +31,7 @@ const Frame = ({
     zIndex: 2, // Inner frame has a lower zIndex
     pointerEvents: "all",
     borderRadius: "50px",
-    overflow: "hidden",
+    overflow: isOverflowVisible ? "visible" : "hidden",
   };
 
   const contentStyle = {
@@ -54,6 +55,7 @@ const Frame = ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    pointerEvents: "none",
   };
 
   const frameStyle = {

@@ -148,6 +148,7 @@ const LayoutHorizontal = React.memo(
             innerLeft={20}
             innerWidth='45%'
             innerHeight='73%'
+            isOverflowVisible
           >
             <ChartContainer sensorData={sensorData} />
           </Frame>
@@ -195,7 +196,7 @@ const LayoutHorizontal = React.memo(
               style={{
                 width: "100%",
                 height: "100%",
-                overflowX: "scroll",
+                overflow: "hidden",
               }}
             >
               <img

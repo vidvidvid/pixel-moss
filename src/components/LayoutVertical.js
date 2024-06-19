@@ -161,6 +161,7 @@ const LayoutVertical = React.memo(
             innerLeft={20}
             innerWidth='45%'
             innerHeight='77%'
+            isOverflowVisible
           >
             <ChartContainer
               sensorData={sensorData}
@@ -173,7 +174,7 @@ const LayoutVertical = React.memo(
             width='41%'
             position={{ bottom: "6%", left: "5%" }}
             innerTop={25}
-            innerLeft={60}
+            innerLeft={90}
             innerWidth='73%'
             innerHeight='85%'
           >
@@ -218,15 +219,15 @@ const LayoutVertical = React.memo(
               right: 20,
             }}
             innerTop='10%'
-            innerLeft='22%'
-            innerWidth='38%'
+            innerLeft='23%'
+            innerWidth='39%'
             innerHeight='55%'
           >
             <div
               style={{
                 width: "100%",
                 height: "100%",
-                overflowX: "scroll",
+                overflow: "hidden",
               }}
               ref={setScrollableRef(1)}
             >

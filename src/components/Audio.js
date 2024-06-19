@@ -50,6 +50,7 @@ const Audio = React.memo(({ audioPlayerRef, isPlaying, togglePlayPause }) => {
             alignItems: "center",
             gap: 30,
             zIndex: 1000000,
+            pointerEvents: "all",
           }}
         >
           {isPlaying ? (
