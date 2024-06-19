@@ -14,11 +14,11 @@ const AutoScrollableFrame = () => {
         return;
       }
 
-      const { scrollTop, scrollHeight } = scrollableElement;
+      const { scrollTop, scrollHeight, clientHeight } = scrollableElement;
 
-      if (scrollTop >= scrollHeight / 2) {
+      if (scrollTop >= scrollHeight - clientHeight) {
         // Reset scroll position to create a seamless loop
-        scrollableElement.scrollTop = scrollTop - scrollHeight / 2;
+        scrollableElement.scrollTop = 0;
       } else {
         // Continue scrolling down
         scrollableElement.scrollTop += 0.5; // Adjust scroll speed as needed
