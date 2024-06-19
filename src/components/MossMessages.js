@@ -9,6 +9,7 @@ const MossMessages = ({ mossMessages, isOnline }) => {
         position: "relative",
         overflowY: "auto",
       }}
+      className='scrollable-div'
     >
       <div
         style={{

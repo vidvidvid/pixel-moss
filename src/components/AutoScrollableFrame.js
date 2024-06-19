@@ -44,6 +44,7 @@ const AutoScrollableFrame = () => {
         overflowY: "scroll", // Allow user scrolling
         borderRadius: "40px",
       }}
+      className='scrollable-div'
     >
       <div>
         <img
