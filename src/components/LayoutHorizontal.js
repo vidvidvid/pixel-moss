@@ -196,12 +196,15 @@ const LayoutHorizontal = React.memo(
               style={{
                 width: "100%",
                 height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
                 overflow: "hidden",
               }}
             >
               <img
                 src={centergif}
-                style={{ height: "100%", width: "auto" }}
+                style={{ width: "100%", height: "auto" }}
                 alt='Scrollable content'
               />
             </div>
