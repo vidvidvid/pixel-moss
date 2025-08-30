@@ -131,3 +131,27 @@
   scrollbar-width: none;
   /* Firefox */
 }
+
+/* Vignette effect on background only */
+.with-vignette::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, 
+    transparent 0%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.3) 60%,
+    rgba(0, 0, 0, 0.9) 80%,
+    rgba(0, 0, 0, 1) 100%);
+  z-index: 1;
+}
+
+/* Ensure content is above vignette */
+.with-vignette > * {
+  position: relative;
+  z-index: 2;
+}

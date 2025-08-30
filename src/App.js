@@ -61,7 +61,7 @@ function App() {
   };
 
   return (
-    <div style={backgroundStyle} className='custom-cursor'>
+    <div style={backgroundStyle} className='custom-cursor with-vignette'>
       {isVertical ? (
         <div className='vertical-container'>
           <div className='vertical-content'>
