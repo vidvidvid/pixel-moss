@@ -44,19 +44,64 @@ const LayoutHorizontal = React.memo(
     const [sensorData, setSensorData] = useState([]);
 
     const database = getDatabase(app);
+    console.log("database", database);
+
+    // 3. Modified LayoutHorizontal component with improved error handling
+    // Replace the existing useEffect hooks with these:
 
     useEffect(() => {
-      const unsubscribe = subscribeToSensorData(database, (data) => {
-        setSensorData(data);
-        if (data.length > 0) {
-          const lastData = data[data.length - 1]; // Assuming data is an array and sorted by timestamp
-          setLastDataTimestamp(Date.parse(lastData.timestamp));
-        }
-      });
+      try {
+        const db = getDatabase(app);
+        console.log("Initializing database connection...", db);
 
-      return () => {
-        unsubscribe();
-      };
+        if (!db) {
+          console.error("Failed to initialize database");
+          return;
+        }
+
+        const unsubscribe = subscribeToSensorData(db, (data) => {
+          console.log("Sensor data callback received:", data);
+          setSensorData(data);
+
+          if (data.length > 0) {
+            const lastData = data[data.length - 1];
+            const timestamp = Date.parse(lastData.timestamp);
+            console.log("Setting last data timestamp:", timestamp);
+            setLastDataTimestamp(timestamp);
+          }
+        });
+
+        return () => {
+          console.log("Cleaning up sensor data subscription...");
+          unsubscribe();
+        };
+      } catch (error) {
+        console.error("Error in sensor data useEffect:", error);
+      }
+    }, []);
+
+    useEffect(() => {
+      try {
+        const db = getDatabase(app);
+        console.log("Initializing messages database connection...", db);
+
+        if (!db) {
+          console.error("Failed to initialize database for messages");
+          return;
+        }
+
+        const unsubscribe = subscribeToMossMessages(db, (messages) => {
+          console.log("Messages callback received:", messages);
+          setMossMessages(messages);
+        });
+
+        return () => {
+          console.log("Cleaning up messages subscription...");
+          unsubscribe();
+        };
+      } catch (error) {
+        console.error("Error in messages useEffect:", error);
+      }
     }, []);
 
     useEffect(() => {
@@ -73,19 +118,6 @@ const LayoutHorizontal = React.memo(
 
       return () => clearInterval(interval);
     }, [lastDataTimestamp]);
-
-    useEffect(() => {
-      const database = getDatabase(app);
-      // Subscribe to moss messages
-      const unsubscribeMessages = subscribeToMossMessages(
-        database,
-        setMossMessages
-      );
-
-      return () => {
-        unsubscribeMessages(); // Cleanup this subscription when the component unmounts
-      };
-    }, []);
 
     useEffect(() => {
       const interval = setInterval(() => {
