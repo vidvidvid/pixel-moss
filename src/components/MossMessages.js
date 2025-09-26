@@ -5,7 +5,7 @@ const MossMessages = ({ mossMessages, isOnline }) => {
     <div
       style={{
         width: "80%",
-        height: "80%",
+        height: "84%",
         position: "relative",
         overflowY: "auto",
       }}
@@ -40,7 +40,7 @@ const MossMessages = ({ mossMessages, isOnline }) => {
             style={{
               fontSize: 12,
               color: "#C6A4FF",
-              marginTop: -60,
+              marginTop: -40,
             }}
             className='text-green ibm-font'
           >
