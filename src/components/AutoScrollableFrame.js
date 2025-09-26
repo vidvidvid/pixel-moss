@@ -16,8 +16,9 @@ const AutoScrollableFrame = () => {
 
       const { scrollTop, scrollHeight, clientHeight } = scrollableElement;
 
-      if (scrollTop >= scrollHeight - clientHeight) {
-        // Reset scroll position to create a seamless loop
+      // Reset when we've scrolled halfway through (before reaching the end)
+      // This works because we have duplicated content
+      if (scrollTop >= (scrollHeight - clientHeight) / 2) {
         scrollableElement.scrollTop = 0;
       } else {
         // Continue scrolling down
