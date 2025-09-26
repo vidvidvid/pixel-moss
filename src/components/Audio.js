@@ -18,16 +18,22 @@ const Audio = React.memo(({ audioPlayerRef, isPlaying, togglePlayPause }) => {
     const audioPlayer = audioPlayerRef.current;
 
     const handleSongEnd = () => {
-      console.log("Song ended. Moving to next.");
+      const wasPlaying = isPlaying;
       const nextSongIndex = (currentSongIndex + 1) % songs.length;
       setCurrentSongIndex(nextSongIndex);
+      
+      if (wasPlaying) {
+        setTimeout(() => {
+          audioPlayer?.play().catch(console.error);
+        }, 100);
+      }
     };
 
     if (audioPlayer) {
       audioPlayer.addEventListener("ended", handleSongEnd);
       return () => audioPlayer.removeEventListener("ended", handleSongEnd);
     }
-  }, [audioPlayerRef, currentSongIndex, songs.length]);
+  }, [audioPlayerRef, currentSongIndex, songs.length, isPlaying]);
 
   const getSongTitle = () => songs[currentSongIndex].replace(".wav", "");
 
@@ -41,6 +47,7 @@ const Audio = React.memo(({ audioPlayerRef, isPlaying, togglePlayPause }) => {
         bottom: 149,
         width: 300,
         pointerEvents: "all",
+        zIndex: 9999999,
       }}
     >
       <div style={{ marginTop: 75, marginLeft: 100 }}>

@@ -49,11 +49,13 @@ function App() {
 
   const togglePlayPause = () => {
     const audioPlayer = audioPlayerRef.current;
-    // audioPlayer.play();
-    // console.log("audioPlayer", audioPlayer);
+    
     if (audioPlayer.paused) {
-      audioPlayer.play();
-      setIsPlaying(true);
+      audioPlayer.play().then(() => {
+        setIsPlaying(true);
+      }).catch((error) => {
+        console.error("Failed to play audio:", error);
+      });
     } else {
       audioPlayer.pause();
       setIsPlaying(false);
