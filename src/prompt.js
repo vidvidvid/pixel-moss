@@ -38,7 +38,7 @@ export const formPrompt = (data) => {
     
     Luminosity:  from 100lux to 300lux is optimal for moss. The average luminosity of the last hour was ${averageLuminosityOfLastHour()}.
     
-    Moisture:  from 40%-60% moisture in soil is optimal for moss. The average moisture of the last hour was ${averageMoistureOfLastHour()}.
+    Moisture:  from 500-700 moisture sensor reading is optimal for moss. The average moisture of the last hour was ${averageMoistureOfLastHour()}.
     
     Tone
     Don’t be pathetic. Don’t write too much, just a few sentences, max 45 words. Try not to be stupid, no boomer humor allowed, your public is gen Z. Use kaomojis, not emojis.

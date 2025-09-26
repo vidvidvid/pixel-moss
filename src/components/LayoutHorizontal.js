@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { getDatabase } from "firebase/database";
 import {
   writeMossMessage,
@@ -23,9 +23,19 @@ const LayoutHorizontal = React.memo(
     const [mossMessages, setMossMessages] = useState([]);
     const [isOnline, setIsOnline] = useState(false);
     const [lastDataTimestamp, setLastDataTimestamp] = useState(Date.now());
-    const [lastSent, setLastSent] = useState(() => {
-      return localStorage.getItem("lastSent") || new Date().toISOString();
-    });
+    const [sensorData, setSensorData] = useState([]);
+    
+    // Use refs to access current values in interval
+    const sensorDataRef = useRef(sensorData);
+    const isOnlineRef = useRef(isOnline);
+    
+    useEffect(() => {
+      sensorDataRef.current = sensorData;
+    }, [sensorData]);
+    
+    useEffect(() => {
+      isOnlineRef.current = isOnline;
+    }, [isOnline]);
 
     const layoutStyle = {
       display: "flex",
@@ -41,13 +51,9 @@ const LayoutHorizontal = React.memo(
       alignItems: "center",
     };
 
-    const [sensorData, setSensorData] = useState([]);
-
     const database = getDatabase(app);
     console.log("database", database);
 
-    // 3. Modified LayoutHorizontal component with improved error handling
-    // Replace the existing useEffect hooks with these:
 
     useEffect(() => {
       try {
@@ -122,22 +128,43 @@ const LayoutHorizontal = React.memo(
     useEffect(() => {
       const interval = setInterval(() => {
         const now = new Date();
-        const lastSentTime = new Date(lastSent);
+        const storedLastSent = localStorage.getItem("lastSent");
+        const lastSentTime = new Date(storedLastSent || new Date().toISOString());
         const oneHour = 1000 * 60 * 60; // milliseconds in an hour
 
-        if (now - lastSentTime >= oneHour && isOnline) {
-          sendToChatGPT(sensorData);
+        console.log('[AUTO CHECK]', {
+          timeSinceLast: (now - lastSentTime) / 1000 + 's',
+          needsToSend: now - lastSentTime >= oneHour,
+          isOnline: isOnlineRef.current
+        });
+
+        if (now - lastSentTime >= oneHour && isOnlineRef.current) {
+          sendToChatGPT(sensorDataRef.current);
           const newTimestamp = now.toISOString();
-          setLastSent(newTimestamp);
           localStorage.setItem("lastSent", newTimestamp);
         }
       }, 1000 * 60 * 5); // Check every 5 minutes whether it's time to send a new message
 
       return () => clearInterval(interval);
-    }, [sensorData, lastSent]);
+    }, []);
 
-    function sendToChatGPT(sensorData) {
+    function sendToChatGPT(sensorData, forceSend = false) {
+      console.log(forceSend ? '[FORCE SEND]' : '[AUTO SEND]', 'Starting blog message send...', {
+        sensorDataLength: sensorData?.length,
+        apiKeyPresent: !!process.env.REACT_APP_OPENAI_API_KEY,
+        apiKeyLength: process.env.REACT_APP_OPENAI_API_KEY?.length,
+        timestamp: new Date().toISOString()
+      });
+      
+      if (!process.env.REACT_APP_OPENAI_API_KEY) {
+        console.error('[SEND ERROR] No OpenAI API key found!');
+        alert('No OpenAI API key found! Please set REACT_APP_OPENAI_API_KEY in environment variables.');
+        return;
+      }
+      
       const message = formPrompt(sensorData); // Assuming this returns an array of messages
+      console.log('[SEND] Prompt generated:', message.substring(0, 200) + '...');
+      
       axios
         .post(
           "https://api.openai.com/v1/chat/completions",
@@ -158,13 +185,21 @@ const LayoutHorizontal = React.memo(
           }
         )
         .then((response) => {
+          console.log('[SEND SUCCESS] ChatGPT response received:', response.data);
           writeMossMessage(database, {
             message: response.data.choices[0].message.content,
             timestamp: new Date().toISOString(),
           });
         })
         .catch((error) => {
-          console.error("Failed to send data to ChatGPT:", error);
+          console.error("[SEND ERROR] Failed to send data to ChatGPT:", error);
+          console.error('[SEND ERROR] Details:', {
+            message: error.message,
+            response: error.response?.data,
+            status: error.response?.status,
+            apiKeyPresent: !!process.env.REACT_APP_OPENAI_API_KEY
+          });
+          alert(`Failed to send blog message: ${error.message}`);
         });
     }
 
