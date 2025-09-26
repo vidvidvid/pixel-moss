@@ -3,7 +3,7 @@ import listeningto from "../assets/listeningto.svg";
 
 const Audio = React.memo(({ audioPlayerRef, isPlaying, togglePlayPause }) => {
   const songs = useMemo(
-    () => ["atmosfericni_bs.mp3", "Spore.mp3", "bff.mp3", "GBnote.mp3"],
+    () => ["atmosfericni_bs.mp3", "spore.mp3", "bff.mp3", "gbnote.mp3"],
     []
   );
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
