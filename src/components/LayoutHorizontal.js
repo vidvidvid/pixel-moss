@@ -108,8 +108,8 @@ const LayoutHorizontal = React.memo(
       const interval = setInterval(() => {
         const now = Date.now();
         const timeSinceLastData = now - lastDataTimestamp;
-        const tenSeconds = 10000;
-        if (timeSinceLastData > tenSeconds) {
+        const fortyFiveSeconds = 45000;
+        if (timeSinceLastData > fortyFiveSeconds) {
           setIsOnline(false);
         } else {
           setIsOnline(true);
